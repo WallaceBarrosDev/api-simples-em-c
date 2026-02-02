@@ -1,5 +1,9 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+#include "interfaces.h"
 
 int initInterface() {
   int option;
@@ -22,22 +26,36 @@ void finishInterface() {
   exit(0);
 }
 
-void loginInterface() {
-  char username[100];
+bool validateEmail(char *email) {
+  return (strstr(email, "@") != NULL) ? true : false;
+}
 
+bool emailLoginInterface(char *email) {
+  printf("| %-20.20s |\n| %-20.20s |\n", "Digite o email", ">");
+  printf("+----------------------+\n"); 
+  printf("\033[2A\033[4C");
+  scanf("%s", email);
+
+  return validateEmail(email);
+}
+
+void loginInterface() {
+  User *user = malloc(sizeof(User));
+  
   printf("\n+----------------------+\n");
   printf("| %-20.20s |\n", "Logue com o usuario");
   printf("+----------------------+\n");
-  printf("| %-20.20s |\n| %-20.20s |\n", "Digite o usuario", ">");
-  printf("+----------------------+\n"); 
-  printf("\033[2A\033[4C");
-  scanf("%s", username);
+  
+  while(!emailLoginInterface(user->email)) {
+    printf("\n+----------------------+\n");
+    printf("| %-20.20s |\n", "Email invalido!");
+    printf("+----------------------+\n");
+  };
 
   printf("+----------------------+\n"); 
   printf("| %-20.20s |\n| %-20.20s |\n", "Digite a senha", ">");
   printf("+----------------------+\n"); 
   printf("\033[2A\033[4C");
-  scanf("%s", username);
+  scanf("%s", user->password);
   printf("+----------------------+\n");
 }
-
