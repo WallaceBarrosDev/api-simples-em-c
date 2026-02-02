@@ -39,6 +39,10 @@ bool emailLoginInterface(char *email) {
   return validateEmail(email);
 }
 
+bool validateUser(User *user) {
+  return (!strcmp(user->email, "w@w") && !strcmp(user->password, "abc123"));
+}
+
 void loginInterface() {
   User *user = malloc(sizeof(User));
   
@@ -58,4 +62,13 @@ void loginInterface() {
   printf("\033[2A\033[4C");
   scanf("%s", user->password);
   printf("+----------------------+\n");
+  
+  if(validateUser(user)) {
+    printf("olá %s, seja bem vindo\n", user->email);
+    exit(0);
+  } else {
+    printf("+----------------------+\n"); 
+    printf("| %20.20s |\n", "Email ou senha invalido");
+    printf("+----------------------+\n"); 
+  }
 }
