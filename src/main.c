@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+#include "interfaces.h"
+
+
+int main(void) {
+  printf("<== Bem vindo ==>\n");
+  
+  while (1) {
+    int option = initInterface();
+
+    switch (option) {
+      case 1:
+        loginInterface();
+        break;
+      case 2:
+        finishInterface();
+        break;
+      default:
+        printf("\nOpcao invalida!\n");
+        break;
+    }
+  
+  }
+
+  return 0;
+}
