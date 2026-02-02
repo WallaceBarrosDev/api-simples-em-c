@@ -1,7 +1,7 @@
 all:
 	gcc -o program *.c -Wall -Wextra -pedantic -Werror -std=c11
 	@clear
-	./main
+	./program
 
 b:
 	@clear
