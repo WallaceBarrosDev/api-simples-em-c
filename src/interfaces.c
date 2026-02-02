@@ -71,4 +71,6 @@ void loginInterface() {
     printf("| %20.20s |\n", "Email ou senha invalido");
     printf("+----------------------+\n"); 
   }
+
+  free(user);
 }
