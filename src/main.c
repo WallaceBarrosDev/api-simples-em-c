@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "interfaces.h"
+#include "interfaces/interfaces.h"
 
 
 int main(void) {
