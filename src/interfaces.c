@@ -81,8 +81,28 @@ void loginInterface() {
 }
 
 void registerInterface(void) {
+  User *user = malloc(sizeof(User));
   clearScreen();
+  
   printf("\n+----------------------+\n");
   printf("| %-20.20s |\n", "Cadastre-se");
   printf("+----------------------+\n");
+
+  printf("+----------------------+\n"); 
+  printf("| %-20.20s |\n| %-20.20s |\n", "Digite o nome", ">");
+  printf("+----------------------+\n"); 
+  printf("\033[2A\033[4C");
+  scanf("%s", user->name);
+
+  printf("+----------------------+\n"); 
+  printf("| %-20.20s |\n| %-20.20s |\n", "Digite o email", ">");
+  printf("+----------------------+\n"); 
+  printf("\033[2A\033[4C");
+  scanf("%s", user->email);
+
+  printf("+----------------------+\n"); 
+  printf("| %-20.20s |\n| %-20.20s |\n", "Digite a senha", ">");
+  printf("+----------------------+\n"); 
+  printf("\033[2A\033[4C");
+  scanf("%s", user->password);
 }
