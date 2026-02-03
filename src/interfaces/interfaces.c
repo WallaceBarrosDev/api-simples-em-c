@@ -11,7 +11,7 @@ int initInterface() {
   printf("+----------------------+\n");
   printf("| %-22s |\n", "Selecione uma opção");
   printf("+----------------------+\n");
-  printf("| %-20.20s |\n| %-20.20s |\n| %-20.20s |\n| %-20.20s |\n", "[1] Login", "[2] Registre-se", "[3] Sair", "|>");
+  printf("| %-20.20s |\n| %-20.20s |\n| %-20.20s |\n| %-20.20s |\n", "[1] Login", "[2] cadastre-se", "[3] Sair", "|>");
   printf("+----------------------+\n");
   printf("\033[2A\033[5C");
   scanf("%d", &option);
