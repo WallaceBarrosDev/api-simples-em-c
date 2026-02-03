@@ -29,7 +29,7 @@ void registerInterface(void) {
 
   free(user);
 }
-static void nameRegisterInterface(char *name) {
+void nameRegisterInterface(char *name) {
   printf("+----------------------+\n");
   printf("| %-20.20s |\n| %-20.20s |\n", "Digite o nome", ">");
   printf("+----------------------+\n");
@@ -37,7 +37,7 @@ static void nameRegisterInterface(char *name) {
   scanf("%s", name);
 }
 
-static void emailRegisterInterface(char *email) {
+void emailRegisterInterface(char *email) {
   bool emailIsValid = false;
 
   while(!emailIsValid) {
@@ -56,7 +56,7 @@ static void emailRegisterInterface(char *email) {
   }
 }
 
-static void passwordRegisterInterface(char *password) {
+void passwordRegisterInterface(char *password) {
   bool passwordIsValid = false;
 
   while(!passwordIsValid) {
