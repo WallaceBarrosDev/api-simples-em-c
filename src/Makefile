@@ -1,5 +1,5 @@
 all:
-	gcc -o program *.c interfaces/*.c -Wall -Wextra -pedantic -Werror -std=c11
+	gcc -o program *.c interfaces/**/*.c interfaces/*.c services/**/*.c services/*.c -Wall -Wextra -pedantic -Werror -std=c11
 	@clear
 	./program
 

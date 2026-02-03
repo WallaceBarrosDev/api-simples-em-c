@@ -1,15 +1,11 @@
-#ifndef INTERFACES
-#define INTERFACES
+#ifndef INTERFACES_H
+#define INTERFACES_H
 
-typedef struct {
-  char name[100];
-  char email[100];
-  char password[100];
-} User;
+int initInterface(void);
+void finishInterface(void);
+void clearScreen(void);
 
-int initInterface();
-void finishInterface();
-void loginInterface();
-void registerInterface();
+#include "loginInterface/loginInterface.h"
+#include "registerInterface/registerInterface.h"
 
 #endif
