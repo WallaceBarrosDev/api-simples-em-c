@@ -10,5 +10,6 @@ typedef struct {
 int initInterface();
 void finishInterface();
 void loginInterface();
+void registerInterface();
 
 #endif

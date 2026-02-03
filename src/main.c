@@ -12,13 +12,19 @@ int main(void) {
     switch (option) {
       case 1:
         loginInterface();
-        break;
+      break;
+
       case 2:
+        registerInterface();        
+      break;
+      
+      case 3:
         finishInterface();
-        break;
+      break;
+      
       default:
         printf("\nOpcao invalida!\n");
-        break;
+      break;
     }
   
   }
