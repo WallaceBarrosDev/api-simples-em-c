@@ -11,7 +11,7 @@ int initInterface() {
   printf("+----------------------+\n");
   printf("| %-22s |\n", "Selecione uma opção");
   printf("+----------------------+\n");
-  printf("| %-20.20s |\n| %-20.20s |\n| %-20.20s |\n", "[1] Login", "[2] Sair", "|>");
+  printf("| %-20.20s |\n| %-20.20s |\n| %-20.20s |\n| %-20.20s |\n", "[1] Login", "[2] Registre-se", "[3] Sair", "|>");
   printf("+----------------------+\n");
   printf("\033[2A\033[5C");
   scanf("%d", &option);
@@ -24,6 +24,10 @@ void finishInterface() {
   printf("| %-20.20s |\n", "Fim do programa ...");
   printf("+----------------------+\n");
   exit(0);
+}
+
+void clearScreen() {
+  printf("\033[2J\033[1H");
 }
 
 bool validateEmail(char *email) {
@@ -46,6 +50,7 @@ bool validateUser(User *user) {
 void loginInterface() {
   User *user = malloc(sizeof(User));
   
+  clearScreen();
   printf("\n+----------------------+\n");
   printf("| %-20.20s |\n", "Logue com o usuario");
   printf("+----------------------+\n");
@@ -73,4 +78,11 @@ void loginInterface() {
   }
 
   free(user);
+}
+
+void registerInterface(void) {
+  clearScreen();
+  printf("\n+----------------------+\n");
+  printf("| %-20.20s |\n", "Cadastre-se");
+  printf("+----------------------+\n");
 }
