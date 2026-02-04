@@ -1,14 +1,9 @@
 #include <stdio.h>
-
-//#include "api/api.h"
 #include "interfaces/interfaces.h"
-//#include "interfaces/structs.h"
-
 
 int main(void) {
   printf("<== Bem vindo ==>\n");
-//  User *userTest;
-  
+
   while (1) {
     int option = initInterface();
 
@@ -24,10 +19,6 @@ int main(void) {
       case 3:
         finishInterface();
       break;
-
-      /*case 4:
-        createUser(userTest);
-      break;*/
 
       default:
         printf("\nOpcao invalida!\n");
