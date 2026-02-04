@@ -7,6 +7,6 @@
 
 bool validateEmail(const char *email);
 bool validateLoginPassword(const char *password);
-bool validateUser(const User *user);
+bool validateUser(User *user);
 
 #endif

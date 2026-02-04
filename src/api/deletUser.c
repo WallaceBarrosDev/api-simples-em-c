@@ -2,8 +2,9 @@
 #include <stdio.h>
 
 #include "api.h"
+#include ".././interfaces/interfaces.h"
 
-void deleteUser(int id) {
+void deleteUser(char *email) {
   sqlite3 *db;
   char sql[100];
   int rc;
@@ -14,15 +15,15 @@ void deleteUser(int id) {
     return;
   }
 
-  sprintf(sql, "DELETE FROM User WHERE id = %d", id);
+  sprintf(sql, "DELETE FROM User WHERE email = %s", email);
 
   rc = sqlite3_exec(db, sql, callback, NULL, NULL);
   if (rc != SQLITE_OK) {
-    printf("Erro ao excluir o Usuário");
+    card("Erro ao excluir o Usuário");
     sqlite3_close(db);
   }
 
-  printf("Usuário excluido\n");
+  card("Usuário excluido");
 
   sqlite3_close(db);
 }

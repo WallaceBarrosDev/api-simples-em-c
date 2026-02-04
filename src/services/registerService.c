@@ -1,5 +1,4 @@
 #include <string.h>
-
 #include "registerService.h"
 
 bool validateRegisterEmail(const char *email) {

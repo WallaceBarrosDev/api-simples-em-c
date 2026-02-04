@@ -1,31 +1,43 @@
 #include <sqlite3.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-int select(void *, int, char **, char **);
+#include ".././interfaces/interfaces.h"
+#include ".././interfaces/structs.h"
 
-void getUser(int id) {
+int selectUser(void *, int, char **, char **);
+
+User *getUser(const char *email) {
   sqlite3 *db;
   int rc;
   char sql[100];
+  User *user = malloc(sizeof(User));
 
   rc = sqlite3_open("database/api.db", &db);
   if(rc != SQLITE_OK) {
-    printf("Erro ao conectar no banco de dados");
+    card("Erro ao conectar no banco de dados");
+    return NULL;
   }
 
-  sprintf(sql, "SELECT name FROM User WHERE id = %d", id);
+  sprintf(sql, "SELECT name, email, password FROM User WHERE email = '%s';", email);
 
-  rc = sqlite3_exec(db, sql, select , NULL, NULL);
+  rc = sqlite3_exec(db, sql, selectUser , user, NULL);
   if(rc != SQLITE_OK) {
-    printf("Erro ao deletar o Usuário");
+    card("Erro ao buscar o Usuário");
     sqlite3_close(db);
+    return NULL;
   }
 
   sqlite3_close(db);
+  return user;
 }
 
-int select(void *NotUse, int argc, char **argv, char **arColName) {
-  (void) NotUse; (void) argc;
-  printf("%s = %s\n", arColName[0], argv[0]);
+int selectUser(void *data, int argc, char **argv, char **arColName) {
+  (void) argc; (void) arColName;
+
+  User *user = (User *) data;
+  sprintf(user->name, "%s", argv[0]);
+  sprintf(user->email, "%s", argv[1]);
+  sprintf(user->password, "%s", argv[2]);
   return 0;
 }
