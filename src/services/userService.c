@@ -1,20 +1,9 @@
 #include <stdbool.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "loginService.h"
-#include "../api/api.h"
-
-bool validateEmail(const char *email) {
-  return (strstr(email, "@") != NULL) ? true : false;
-}
-
-bool validateLoginPassword(const char *password) {
-  return (strlen(password) >= 6) ? true : false;
-}
-
-#include <string.h>
+#include "services.h"
+#include "../../src/api/api.h"
 
 bool validateUser(User *user) {
     User *dbUser = getUser(user->email);
