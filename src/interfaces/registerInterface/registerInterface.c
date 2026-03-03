@@ -4,8 +4,7 @@
 
 #include "../interfaces.h"
 #include "../structs.h"
-#include "../../services/registerService.h"
-#include "registerInterface.h"
+#include "../../services/services.h"
 #include "../../api/api.h"
 
 void nameRegisterInterface(char *);
@@ -43,8 +42,9 @@ void emailRegisterInterface(char *email) {
     printf("+----------------------+\n");
     printf("\033[2A\033[4C");
     scanf("%s", email);
-    emailIsValid = validateRegisterEmail(email);
 
+    sanitiseEmail(email);
+    emailIsValid = validateRegisterEmail(email);
     if(!emailIsValid) card("Email invalido!");
   }
 }

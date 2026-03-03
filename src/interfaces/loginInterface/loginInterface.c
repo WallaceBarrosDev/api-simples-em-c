@@ -4,7 +4,7 @@
 
 #include "../interfaces.h"
 #include "../structs.h"
-#include "../../services/loginService.h"
+#include "../../services/services.h"
 
 void emailLoginInterface(char *);
 void passwordLoginInterface(char *);
@@ -32,6 +32,8 @@ void emailLoginInterface(char *email) {
     printf("+----------------------+\n"); 
     printf("\033[2A\033[4C");
     scanf("%s", email);
+
+    sanitiseEmail(email);
     emailIsValid = validateEmail(email);
 
     if(!emailIsValid) card("Email invalido!");
