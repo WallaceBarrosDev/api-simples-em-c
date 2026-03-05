@@ -1,1 +1,4 @@
 *.out
+program
+src/database/api.db
+src/program

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "interfaces.h"
 
@@ -18,12 +19,24 @@ int initInterface() {
 }
 
 void finishInterface() {
-  printf("+----------------------+\n");
-  printf("| %-20.20s |\n", "Fim do programa ...");
-  printf("+----------------------+\n");
+  card("Ate logo ...");
   exit(0);
 }
 
 void clearScreen() {
   printf("\033[2J\033[1H");
 }
+
+void card(const char *msg) {
+    const int width = 20;
+    int len = strlen(msg);
+
+    printf("+----------------------+\n");
+
+    for (int i = 0; i < len; i += width) {
+        printf("| %-20.20s |\n", msg + i);
+    }
+
+    printf("+----------------------+\n");
+}
+

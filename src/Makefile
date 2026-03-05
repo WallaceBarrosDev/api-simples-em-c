@@ -1,5 +1,5 @@
 all:
-	gcc -o program *.c interfaces/**/*.c interfaces/*.c services/*.c -Wall -Wextra -pedantic -Werror -std=c11
+	gcc -o program -lsqlite3 *.c interfaces/**/*.c interfaces/*.c services/*.c api/*.c -Wall -Wextra -pedantic -Werror -std=c11
 	@clear
 	./program
 

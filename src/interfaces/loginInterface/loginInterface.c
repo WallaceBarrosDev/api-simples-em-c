@@ -4,7 +4,7 @@
 
 #include "../interfaces.h"
 #include "../structs.h"
-#include "../../services/loginService.h"
+#include "../../services/services.h"
 
 void emailLoginInterface(char *);
 void passwordLoginInterface(char *);
@@ -14,9 +14,7 @@ void loginInterface() {
   User *user = malloc(sizeof(User));
   
   clearScreen();
-  printf("\n+----------------------+\n");
-  printf("| %-20.20s |\n", "Logue com o usuario");
-  printf("+----------------------+\n");
+  card("Logue com o seu usuário");
   
   emailLoginInterface(user->email);
   passwordLoginInterface(user->password);
@@ -34,13 +32,11 @@ void emailLoginInterface(char *email) {
     printf("+----------------------+\n"); 
     printf("\033[2A\033[4C");
     scanf("%s", email);
+
+    sanitiseEmail(email);
     emailIsValid = validateEmail(email);
 
-    if(!emailIsValid) {
-      printf("+----------------------+\n");
-      printf("| %-20.20s |\n", "Email invalido!");
-      printf("+----------------------+\n"); 
-    }
+    if(!emailIsValid) card("Email invalido!");
   }
 }
 
@@ -55,20 +51,17 @@ void passwordLoginInterface(char *password) {
     scanf("%s", password);
     passwordIsValid = validateLoginPassword(password);
 
-    if(!passwordIsValid) {
-      printf("+----------------------+\n");
-      printf("| %-20.20s |\n", "Senha muito curta!");
-      printf("+----------------------+\n");
-    }
+    if(!passwordIsValid) card("Senha invalida!");
   }
 }
 
 void UserLoginInterface(User *user) {
   if(validateUser(user)) {
-    printf("olá %s, seja bem vindo\n", user->email);
+    char message[150];
+    sprintf(message, "olá %s, seja bem vindo", user->name);
+    card(message);
+    return;
   }
 
-  printf("+----------------------+\n"); 
-  printf("| %20.20s |\n", "Email ou senha invalido");
-  printf("+----------------------+\n"); 
+  card("Email ou senha incorretos!");
 }

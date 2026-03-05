@@ -4,8 +4,8 @@
 
 #include "../interfaces.h"
 #include "../structs.h"
-#include "../../services/registerService.h"
-#include "registerInterface.h"
+#include "../../services/services.h"
+#include "../../api/api.h"
 
 void nameRegisterInterface(char *);
 void emailRegisterInterface(char *);
@@ -13,19 +13,15 @@ void passwordRegisterInterface(char *);
 
 void registerInterface(void) {
   User *user = malloc(sizeof(User));
+  
   clearScreen();
-
-  printf("\n+----------------------+\n");
-  printf("| %-20.20s |\n", "Cadastre-se");
-  printf("+----------------------+\n");
+  card("Cadastre-se");
 
   nameRegisterInterface(user->name);
   emailRegisterInterface(user->email);
   passwordRegisterInterface(user->password);
 
-  printf("\n+----------------------+\n");
-  printf("| %-20.20s |\n", "Cadastro realizado com sucesso!");
-  printf("+----------------------+\n");
+  createUser(user);
 
   free(user);
 }
@@ -46,13 +42,10 @@ void emailRegisterInterface(char *email) {
     printf("+----------------------+\n");
     printf("\033[2A\033[4C");
     scanf("%s", email);
-    emailIsValid = validateRegisterEmail(email);
 
-    if(!emailIsValid) {
-      printf("+----------------------+\n");
-      printf("| %-20.20s |\n", "Email invalido!");
-      printf("+----------------------+\n");
-    }
+    sanitiseEmail(email);
+    emailIsValid = validateRegisterEmail(email);
+    if(!emailIsValid) card("Email invalido!");
   }
 }
 
@@ -67,11 +60,6 @@ void passwordRegisterInterface(char *password) {
     scanf("%s", password);
     passwordIsValid = validateRegisterPassword(password);
 
-    if(!passwordIsValid) {
-      printf("+----------------------+\n");
-      printf("| %-20.20s |\n", "Senha muito curta!");
-      printf("+----------------------+\n");
-    }
+    if(!passwordIsValid) card("Senha muito curta!");
   }
 }
-
