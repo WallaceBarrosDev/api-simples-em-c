@@ -6,18 +6,18 @@
 #include "../../src/api/api.h"
 
 bool validateUser(User *user) {
-    User *dbUser = getUser(user->email);
+  User *dbUser = getUser(user->email);
  
-    if(dbUser == NULL) return false;
+  if(dbUser == NULL) return false;
 
-    if(strcmp(dbUser->password, user->password) != 0) {
-      free(dbUser);
-      return false;
-    }
-
-    strcpy(user->name, dbUser->name);
-
+  if(strcmp(dbUser->password, user->password) != 0) {
     free(dbUser);
-    return true;
+    return false;
+  }
+
+  strcpy(user->name, dbUser->name);
+
+  free(dbUser);
+  return true;
 }
 
