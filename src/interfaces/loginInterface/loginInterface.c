@@ -8,17 +8,23 @@
 
 void emailLoginInterface(char *);
 void passwordLoginInterface(char *);
-void UserLoginInterface(User *);
+bool UserLoginInterface(User *);
 
 void loginInterface() {
+  int tryAgain = 1;
   User *user = malloc(sizeof(User));
   
   clearScreen();
   card("Logue com o seu usuário");
   
-  emailLoginInterface(user->email);
-  passwordLoginInterface(user->password);
-  UserLoginInterface(user);
+  while(tryAgain) {
+    emailLoginInterface(user->email);
+    passwordLoginInterface(user->password);
+    if (!UserLoginInterface(user)) {
+      card("Tente novamente ? 1 - SIM | 0 - NAO");
+      scanf("%d", &tryAgain);
+    }
+  }
 
   free(user);
 }
@@ -55,13 +61,14 @@ void passwordLoginInterface(char *password) {
   }
 }
 
-void UserLoginInterface(User *user) {
+bool UserLoginInterface(User *user) {
   if(validateUser(user)) {
     char message[150];
     sprintf(message, "olá %s, seja bem vindo", user->name);
     card(message);
-    return;
+    return true;
   }
 
   card("Email ou senha incorretos!");
+  return false;
 }
